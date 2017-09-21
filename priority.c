@@ -40,10 +40,10 @@ int main(int argc, char *argv[])
     {
         min = sched_get_priority_min(SCHED_RR);
         max = sched_get_priority_max(SCHED_RR);
-        param.sched_priority = (min + max) / 2;
+        // param.sched_priority = (min + max) / 2;
+        param.sched_priority = max - 2;
         printf("min = %d, max = %d\n", min, max);
-        // pthread_attr_setschedparam(&attr, param.sched_priority);
-        pthread_attr_setschedparam(&attr, -14);
+        pthread_attr_setschedparam(&attr, &param);
         pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
     }
 
