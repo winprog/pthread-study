@@ -44,7 +44,10 @@ int main(int argc, char *argv[])
         param.sched_priority = max - 2;
         printf("min = %d, max = %d\n", min, max);
         pthread_attr_setschedparam(&attr, &param);
+#ifndef __ANDROID__
         pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
+#endif
+
     }
 
     pthread_create(&tid, &attr, run, NULL);
